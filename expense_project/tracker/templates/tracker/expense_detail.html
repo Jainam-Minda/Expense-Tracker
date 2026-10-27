@@ -1,0 +1,19 @@
+{% extends 'tracker/base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card-custom">
+            <h3 class="fw-bold mb-1">{{ expense.title }}</h3>
+            <p class="text-muted mb-3">Date: {{ expense.date|date:"Y-m-d" }} | Category: <span class="badge badge-{{ expense.category|lower }}">{{ expense.category }}</span></p>
+            <div class="p-3 bg-light rounded border mb-4">
+                <span class="text-muted small text-uppercase fw-bold">Amount Logged</span>
+                <div class="display-6 fw-bold text-dark mt-1">${{ expense.amount|floatformat:2 }}</div>
+            </div>
+            <div class="d-flex gap-3">
+                <a href="{% url 'dashboard' %}" class="btn btn-navy"><i class="bi bi-arrow-left me-1"></i> Dashboard</a>
+                <a href="{% url 'expense_confirm_delete' expense.pk %}" class="text-danger text-decoration-none align-self-center">Remove this expense</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
